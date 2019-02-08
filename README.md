@@ -14,11 +14,33 @@ EnjoyHint require the following plugins and libs:
 * jQuery > 1.7
 * KineticJS v5.1.0 (included into js file)
 
-#### Installation
-You can install it through `bower` package manager:
+#### Installation *npm*
+
+
 ```
-bower install enjoyhint
+npm i enjoyhint-ga
 ```
+how to import
+```js
+  import EnjoyHint from 'enjoyhint-ga';
+```
+to add library css
+```js
+  require('enjoyhint-ga/src/jquery.enjoyhint.css');
+```
+this css have a custom font, if you want to override them, you must override the css class *enjoy_hint_font* like this
+
+```css
+  .enjoy_hint_font {
+    font-family: inherit;
+  }
+  
+  /* or */
+  .enjoy_hint_font {
+    font-family: MyFontFamily;
+  }
+```
+
 Alternative way:
 - Download the latest version of EnjoyHint
 - Extract the archive with EnjoyHint.
