@@ -106,8 +106,21 @@ var EnjoyHint = function (_options) {
         }
 
         var timeout = step_data.timeout || 0;
+        
+        var intervalCount = 0;
+        var singleInverval = 100; // 100 ms
 
-        setTimeout(function () {
+        var interval = setInterval(function () {
+            intervalCount += 1;
+            
+            if (!$(step_data.selector)) {
+                if (intervalCount * singleInverval > timeout) {
+                    window.clearInterval(interval);
+                }
+                return;
+            }
+
+            window.clearInterval(interval);
 
             if (!step_data.selector) {
 
@@ -287,7 +300,7 @@ var EnjoyHint = function (_options) {
 
                 $body.enjoyhint('render_label_with_shape', shape_data, that.stop);
             }, step_data.scrollAnimationSpeed + 20 || 270);
-        }, timeout);
+        }, singleInverval);
     };
 
     var nextStep = function() {
@@ -577,7 +590,7 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
                     that.options.onSkipClick();
                 });
                 that.$next_btn = $('<div>', {'class': that.cl.next_btn}).appendTo(that.enjoyhint).html('Next').click(function (e) {
-
+                    that.hideNextBtn();
                     that.options.onNextClick();
                 });
 
